@@ -16,9 +16,11 @@ STRING      \"([^\\\"]|\\.)*\"
  
 ^#.*                               { printf("PREPROCESSOR: %s\n", yytext); } 
  
-"printf"[ \t]*\(                  { printf("LIBRARY FUNCTION: printf\nSYMBOL: (\n")); 
-BEGIN(PRINTF); } 
- 
+"printf"[ \t]*\(  { 
+    printf("LIBRARY FUNCTION: printf\nSYMBOL: (\n");
+    BEGIN(PRINTF); 
+}
+
 "int"|"float"|"return"|"if"|"else"|"while"|"for"|"void" { printf("KEYWORD: %s\n", yytext); 
 } 
  
